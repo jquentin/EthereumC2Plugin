@@ -158,17 +158,17 @@ cr.plugins_.Ethereum = function(runtime)
 	Acts.prototype.EstimateGas = function (name, paramsArray, id)
 	{
 		if (paramsArray.length == 0 || paramsArray.length == 1 && paramsArray[0] == '')
-			estimatedGas = contractInstance[name].estimateGas(function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].estimateGas(function (err, res) { OnSendCallback (err, res, id); });
 		else if (paramsArray.length == 1)
-			estimatedGas = contractInstance[name].estimateGas(paramsArray[0], function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].estimateGas(paramsArray[0], function (err, res) { OnSendCallback (err, res, id); });
 		else if (paramsArray.length == 2)
-			estimatedGas = contractInstance[name].estimateGas(paramsArray[0], paramsArray[1], function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].estimateGas(paramsArray[0], paramsArray[1], function (err, res) { OnSendCallback (err, res, id); });
 		else if (paramsArray.length == 3)
-			estimatedGas = contractInstance[name].estimateGas(paramsArray[0], paramsArray[1], paramsArray[2], function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].estimateGas(paramsArray[0], paramsArray[1], paramsArray[2], function (err, res) { OnSendCallback (err, res, id); });
 		else if (paramsArray.length == 4)
-			estimatedGas = contractInstance[name].estimateGas(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].estimateGas(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], function (err, res) { OnSendCallback (err, res, id); });
 		else if (paramsArray.length == 5)
-			estimatedGas = contractInstance[name].estimateGas(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], paramsArray[4], function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].estimateGas(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], paramsArray[4], function (err, res) { OnSendCallback (err, res, id); });
 	}
 	
 	function OnSendCallback (error, result, id)
