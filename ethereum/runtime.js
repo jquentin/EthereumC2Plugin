@@ -34,6 +34,7 @@ cr.plugins_.Ethereum = function(runtime)
 	var currentCallbackId;
 	var currentCallbackResponse;
 	var currentCallbackError;
+	var currentEvent;
 
 	typeProto.onCreate = function()
 	{
@@ -68,6 +69,17 @@ cr.plugins_.Ethereum = function(runtime)
 		var MyContract = web3.eth.contract(contractABI);
 		contractInstance = MyContract.at(contractAddress);
 		
+		var events = myContractInstance.allEvents([additionalFilterObject]);
+
+		// watch for changes
+		events.watch(function(err, ev){
+			if (!err)
+			{
+				currentEvent = ev;
+				runtime.trigger(pluginProto.cnds.OnEvent, inst);
+			}
+		});
+		
 		runtime.trigger(pluginProto.cnds.OnContractLoaded, inst);
 
 	};
@@ -99,6 +111,10 @@ cr.plugins_.Ethereum = function(runtime)
 	Cnds.prototype.OnFunctionCallback = function (id)
 	{
 		return currentCallbackId == id;
+	};
+	Cnds.prototype.OnEvent = function (ev)
+	{
+		return currentEvent == ev;
 	};
 	
 	pluginProto.cnds = new Cnds();
@@ -139,6 +155,23 @@ cr.plugins_.Ethereum = function(runtime)
 			contractInstance[name].sendTransaction(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], function (err, res) { OnSendCallback (err, res, id); });
 		else if (paramsArray.length == 5)
 			contractInstance[name].sendTransaction(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], paramsArray[4], function (err, res) { OnSendCallback (err, res, id); });
+	}
+	
+	Acts.prototype.EstimateGas = function (name, params, id)
+	{
+		var paramsArray = params.split(/\s*,\s*/);
+		if (paramsArray.length == 0 || paramsArray.length == 1 && paramsArray[0] == '')
+			estimatedGas = contractInstance[name].estimateGas(function (err, res) { OnSendCallback (err, res, id); });
+		else if (paramsArray.length == 1)
+			estimatedGas = contractInstance[name].estimateGas(paramsArray[0], function (err, res) { OnSendCallback (err, res, id); });
+		else if (paramsArray.length == 2)
+			estimatedGas = contractInstance[name].estimateGas(paramsArray[0], paramsArray[1], function (err, res) { OnSendCallback (err, res, id); });
+		else if (paramsArray.length == 3)
+			estimatedGas = contractInstance[name].estimateGas(paramsArray[0], paramsArray[1], paramsArray[2], function (err, res) { OnSendCallback (err, res, id); });
+		else if (paramsArray.length == 4)
+			estimatedGas = contractInstance[name].estimateGas(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], function (err, res) { OnSendCallback (err, res, id); });
+		else if (paramsArray.length == 5)
+			estimatedGas = contractInstance[name].estimateGas(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], paramsArray[4], function (err, res) { OnSendCallback (err, res, id); });
 	}
 	
 	function OnSendCallback (error, result, id)

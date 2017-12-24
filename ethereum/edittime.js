@@ -30,18 +30,26 @@ AddCondition(2, cf_trigger, "On function error", "Callbacks", "On function error
 AddStringParam("ID", "The id of the callback to wait for.");
 AddCondition(3, cf_trigger, "On function callback", "Callbacks", "On function callback with ID: {0}", "Triggered when a function returns, with or without error.", "OnFunctionCallback");
 
+AddStringParam("Event", "The name of the event to watch for.");
+AddCondition(4, cf_trigger, "On event", "Event", "On event: {0}", "Triggered when an event is triggered.", "OnEvent");
+
 //////////////////////////////////////////////////////////////
 // Actions
 
 AddStringParam("Name with parameters types", "The name of the function to call, in the form 'myMethod(uint256)'.");
 AddStringParam("Parameters", "The parameters to send, separated by commas.");
 AddStringParam("Callback id", "The id for identifying the callback.");
-AddAction(0, 0, "Call", "Ethereum", "Call constant method {0} with parameters {1}", "Call a Constant Method", "Call");
+AddAction(0, 0, "Call", "Methods", "Call constant method {0} ( {1} )", "Call a Constant Method", "Call");
 
 AddStringParam("Name with parameters types", "The name of the function to call, in the form 'myMethod(uint256)'.");
 AddStringParam("Parameters", "The parameters to send, separated by commas.");
 AddStringParam("Callback id", "The id for identifying the callback.");
-AddAction(1, 0, "Send", "Ethereum", "Call non-constant method {0} with parameters {1}", "Call a Non-Constant Method", "Send");
+AddAction(1, 0, "Send", "Methods", "Call non-constant method: {0} ( {1} )", "Call a Non-Constant Method", "Send");
+
+AddStringParam("Name with parameters types", "The name of the function to call, in the form 'myMethod(uint256)'.");
+AddStringParam("Parameters", "The parameters to send, separated by commas.");
+AddStringParam("Callback id", "The id for identifying the callback.");
+AddAction(2, 0, "Estimate Gas", "Methods", "Estimate gas of {0} ( {1} )", "Estimate gas of a Non-Constant Method", "EstimateGas");
 
 //////////////////////////////////////////////////////////////
 // Expressions
