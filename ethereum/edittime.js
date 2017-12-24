@@ -37,19 +37,19 @@ AddCondition(4, cf_trigger, "On event", "Event", "On event: {0}", "Triggered whe
 // Actions
 
 AddStringParam("Name with parameters types", "The name of the function to call, in the form 'myMethod(uint256)'.");
-AddStringParam("Parameters", "The parameters to send, separated by commas.");
+AddVariadicParams("Parameter {n}", "A parameter to pass for the function call.");
 AddStringParam("Callback id", "The id for identifying the callback.");
-AddAction(0, 0, "Call", "Methods", "Call constant method {0} ( {1} )", "Call a Constant Method", "Call");
+AddAction(0, 0, "Call", "Methods", "Call constant method {0} ( {...} )", "Call a Constant Method", "Call");
 
 AddStringParam("Name with parameters types", "The name of the function to call, in the form 'myMethod(uint256)'.");
-AddStringParam("Parameters", "The parameters to send, separated by commas.");
+AddVariadicParams("Parameter {n}", "A parameter to pass for the function call.");
 AddStringParam("Callback id", "The id for identifying the callback.");
-AddAction(1, 0, "Send", "Methods", "Call non-constant method: {0} ( {1} )", "Call a Non-Constant Method", "Send");
+AddAction(1, 0, "Send", "Methods", "Call non-constant method: {0} ( {...} )", "Call a Non-Constant Method", "Send");
 
 AddStringParam("Name with parameters types", "The name of the function to call, in the form 'myMethod(uint256)'.");
-AddStringParam("Parameters", "The parameters to send, separated by commas.");
+AddVariadicParams("Parameter {n}", "A parameter to pass for the function call.");
 AddStringParam("Callback id", "The id for identifying the callback.");
-AddAction(2, 0, "Estimate Gas", "Methods", "Estimate gas of {0} ( {1} )", "Estimate gas of a Non-Constant Method", "EstimateGas");
+AddAction(2, 0, "Estimate Gas", "Methods", "Estimate gas of {0} ( {...} )", "Estimate gas of a Non-Constant Method", "EstimateGas");
 
 //////////////////////////////////////////////////////////////
 // Expressions

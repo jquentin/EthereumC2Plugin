@@ -69,7 +69,7 @@ cr.plugins_.Ethereum = function(runtime)
 		var MyContract = web3.eth.contract(contractABI);
 		contractInstance = MyContract.at(contractAddress);
 		
-		var events = myContractInstance.allEvents([additionalFilterObject]);
+		var events = contractInstance.allEvents();
 
 		// watch for changes
 		events.watch(function(err, ev){
@@ -123,9 +123,8 @@ cr.plugins_.Ethereum = function(runtime)
 	// Actions
 	function Acts() {};
 	
-	Acts.prototype.Call = function (name, params, id)
+	Acts.prototype.Call = function (name, paramsArray, id)
 	{
-		var paramsArray = params.split(/\s*,\s*/);
 		if (paramsArray.length == 0 || paramsArray.length == 1 && paramsArray[0] == '')
 			contractInstance[name].call(function (err, res) { OnSendCallback (err, res, id); });
 		else if (paramsArray.length == 1)
@@ -140,9 +139,8 @@ cr.plugins_.Ethereum = function(runtime)
 			contractInstance[name].call(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], paramsArray[4], function (err, res) { OnSendCallback (err, res, id); });
 	}
 	
-	Acts.prototype.Send = function (name, params, id)
+	Acts.prototype.Send = function (name, paramsArray, id)
 	{
-		var paramsArray = params.split(/\s*,\s*/);
 		if (paramsArray.length == 0 || paramsArray.length == 1 && paramsArray[0] == '')
 			contractInstance[name].sendTransaction(function (err, res) { OnSendCallback (err, res, id); });
 		else if (paramsArray.length == 1)
@@ -157,9 +155,8 @@ cr.plugins_.Ethereum = function(runtime)
 			contractInstance[name].sendTransaction(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], paramsArray[4], function (err, res) { OnSendCallback (err, res, id); });
 	}
 	
-	Acts.prototype.EstimateGas = function (name, params, id)
+	Acts.prototype.EstimateGas = function (name, paramsArray, id)
 	{
-		var paramsArray = params.split(/\s*,\s*/);
 		if (paramsArray.length == 0 || paramsArray.length == 1 && paramsArray[0] == '')
 			estimatedGas = contractInstance[name].estimateGas(function (err, res) { OnSendCallback (err, res, id); });
 		else if (paramsArray.length == 1)
