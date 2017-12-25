@@ -228,9 +228,15 @@ cr.plugins_.Ethereum = function(runtime)
 	{
 		ret.set_string(web3.fromWei(number, unit).toString());
 	};
-	Exps.prototype.Sha3 = function (ret)
+	Exps.prototype.Sha3 = function (ret, arg1_, arg2_, arg3_, arg4_, arg5_)
 	{
-		ret.set_string(web3.sha3(arguments));
+		var arg1 = arg1_ || "";
+		var arg2 = arg2_ || "";
+		var arg3 = arg3_ || "";
+		var arg4 = arg4_ || "";
+		var arg5 = arg5_ || "";
+		
+		ret.set_string(web3.sha3(arg1 + arg2 + arg3 + arg4 + arg5));
 	};
 	
 	pluginProto.exps = new Exps();
