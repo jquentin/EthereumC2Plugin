@@ -139,20 +139,20 @@ cr.plugins_.Ethereum = function(runtime)
 			contractInstance[name].call(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], paramsArray[4], function (err, res) { OnSendCallback (err, res, id); });
 	}
 	
-	Acts.prototype.Send = function (name, paramsArray, id)
+	Acts.prototype.Send = function (name, paramsArray, id, v)
 	{
 		if (paramsArray.length == 0 || paramsArray.length == 1 && paramsArray[0] == '')
-			contractInstance[name].sendTransaction(function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].sendTransaction({value:v}, function (err, res) { OnSendCallback (err, res, id); });
 		else if (paramsArray.length == 1)
-			contractInstance[name].sendTransaction(paramsArray[0], function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].sendTransaction(paramsArray[0], {value:v}, function (err, res) { OnSendCallback (err, res, id); });
 		else if (paramsArray.length == 2)
-			contractInstance[name].sendTransaction(paramsArray[0], paramsArray[1], function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].sendTransaction(paramsArray[0], paramsArray[1], {value:v}, function (err, res) { OnSendCallback (err, res, id); });
 		else if (paramsArray.length == 3)
-			contractInstance[name].sendTransaction(paramsArray[0], paramsArray[1], paramsArray[2], function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].sendTransaction(paramsArray[0], paramsArray[1], paramsArray[2], {value:v}, function (err, res) { OnSendCallback (err, res, id); });
 		else if (paramsArray.length == 4)
-			contractInstance[name].sendTransaction(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].sendTransaction(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], {value:v}, function (err, res) { OnSendCallback (err, res, id); });
 		else if (paramsArray.length == 5)
-			contractInstance[name].sendTransaction(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], paramsArray[4], function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].sendTransaction(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], paramsArray[4], {value:v}, function (err, res) { OnSendCallback (err, res, id); });
 	}
 	
 	Acts.prototype.EstimateGas = function (name, paramsArray, id)
@@ -217,6 +217,20 @@ cr.plugins_.Ethereum = function(runtime)
 	Exps.prototype.CurrentCallbackResponse = function (ret)
 	{
 		ret.set_string(currentCallbackResponse.toString());
+	};
+	// Returns string because BigNumbers are not supported by set_int
+	Exps.prototype.ToWei = function (ret, number, unit)
+	{
+		ret.set_string(web3.toWei(number, unit).toString());
+	};
+	// Returns string because BigNumbers are not supported by set_int
+	Exps.prototype.FromWei = function (ret, number, unit)
+	{
+		ret.set_string(web3.fromWei(number, unit).toString());
+	};
+	Exps.prototype.Sha3 = function (ret)
+	{
+		ret.set_string(web3.sha3(arguments));
 	};
 	
 	pluginProto.exps = new Exps();

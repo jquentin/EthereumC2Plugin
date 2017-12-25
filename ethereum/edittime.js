@@ -44,6 +44,7 @@ AddAction(0, 0, "Call", "Methods", "Call constant method {0} ( {...} )", "Call a
 AddStringParam("Name with parameters types", "The name of the function to call, in the form 'myMethod(uint256)'.");
 AddVariadicParams("Parameter {n}", "A parameter to pass for the function call.");
 AddStringParam("Callback id", "The id for identifying the callback.");
+AddNumberParam("Value", "The value sent to the transaction");
 AddAction(1, 0, "Send", "Methods", "Call non-constant method: {0} ( {...} )", "Call a Non-Constant Method", "Send");
 
 AddStringParam("Name with parameters types", "The name of the function to call, in the form 'myMethod(uint256)'.");
@@ -59,6 +60,17 @@ AddExpression(1, ef_return_string, "Current Callback Function", "Ethereum", "Cur
 AddExpression(2, ef_return_string, "Current Callback ID", "Ethereum", "CurrentCallbackId", "Get the Current Callback ID.");
 AddExpression(3, ef_return_string, "Current Callback Error Message", "Ethereum", "CurrentCallbackError", "Get the Current Callback Function's error message.");
 AddExpression(4, ef_return_string, "Current Callback Response", "Ethereum", "CurrentCallbackResponse", "Get the Current Callback Function's response.");
+
+AddNumberParam("Number", "The value in Unit");
+AddStringParam("Unit", "The unit to convert from.");
+AddExpression(5, ef_return_string, "Converts into wei", "Ethereum", "ToWei", "Converts an ethereum unit into wei.");
+
+AddNumberParam("Number", "The value in Wei");
+AddStringParam("Unit", "The unit to convert to.");
+AddExpression(6, ef_return_string, "Converts from wei", "Ethereum", "FromWei", "Converts a number of wei into ethereum units.");
+
+//AddVariadicParams("Elements", "The elements to hash.");
+AddExpression(7, ef_return_string | ef_variadic_parameters, "Hash the elements", "Ethereum", "Sha3", "Hashes the elements using web3.sha3.");
 
 
 //////////////////////////////////////////////////////////////
