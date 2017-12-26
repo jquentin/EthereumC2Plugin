@@ -171,6 +171,12 @@ cr.plugins_.Ethereum = function(runtime)
 			contractInstance[name].estimateGas(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], paramsArray[4], function (err, res) { OnSendCallback (err, res, id); });
 	}
 	
+	
+	Acts.prototype.GetTransactionReceipt = function (hash, id)
+	{
+		web3.eth.getTransactionReceipt(hash, function (err, res) { OnSendCallback (err, res, id); });
+	}
+	
 	function OnSendCallback (error, result, id)
 	{
 		currentCallbackId = id;
@@ -212,11 +218,11 @@ cr.plugins_.Ethereum = function(runtime)
 	};
 	Exps.prototype.CurrentCallbackError = function (ret)
 	{
-		ret.set_string(currentCallbackError.toString());
+		ret.set_string(currentCallbackError ? currentCallbackError.toString() : "");
 	};
 	Exps.prototype.CurrentCallbackResponse = function (ret)
 	{
-		ret.set_string(currentCallbackResponse.toString());
+		ret.set_string(currentCallbackResponse ? currentCallbackResponse.toString() : "");
 	};
 	// Returns string because BigNumbers are not supported by set_int
 	Exps.prototype.ToWei = function (ret, number, unit)
@@ -238,6 +244,11 @@ cr.plugins_.Ethereum = function(runtime)
 		
 		ret.set_string(web3.sha3(arg1 + arg2 + arg3 + arg4 + arg5));
 	};
+	Exps.prototype.IsAddress = function (ret, hexString)
+	{
+		ret.set_int(web3.isAddress(hexString) ? 1 : 0);
+	};
+	
 	
 	pluginProto.exps = new Exps();
 

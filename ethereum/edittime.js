@@ -52,6 +52,12 @@ AddVariadicParams("Parameter {n}", "A parameter to pass for the function call.")
 AddStringParam("Callback id", "The id for identifying the callback.");
 AddAction(2, 0, "Estimate Gas", "Methods", "Estimate gas of {0} ( {...} )", "Estimate gas of a Non-Constant Method", "EstimateGas");
 
+AddStringParam("Hash", "The transaction hash.");
+AddStringParam("Callback id", "The id for identifying the callback.");
+AddAction(3, 0, "Get Transaction Receipt", "Blocks", "Returns the receipt of transaction {0}", "Returns the receipt of a transaction by transaction hash", "GetTransactionReceipt");
+
+
+
 //////////////////////////////////////////////////////////////
 // Expressions
 
@@ -71,6 +77,9 @@ AddExpression(6, ef_return_string, "Converts from wei", "Ethereum", "FromWei", "
 
 //AddVariadicParams("Elements", "The elements to hash.");
 AddExpression(7, ef_return_string | ef_variadic_parameters, "Hash the elements", "Ethereum", "Sha3", "Hashes the elements using web3.sha3.");
+
+AddStringParam("hex String", "An HEX string.");
+AddExpression(8, ef_return_number, "Checks if the given string is an address", "Ethereum", "IsAddress", "Checks if the given string is an address.");
 
 
 //////////////////////////////////////////////////////////////
