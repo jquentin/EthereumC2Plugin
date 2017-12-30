@@ -19,8 +19,6 @@
 //////////////////////////////////////////////////////////////
 // Conditions
 
-AddCondition(0, cf_trigger, "On contract loaded", "Ethereum", "On contract loaded", "Triggered when the contract is loaded", "OnContractLoaded");
-
 AddStringParam("ID", "The id of the callback to wait for.");
 AddCondition(1, cf_trigger, "On function success", "Callbacks", "On function success with ID: {0}", "Triggered when a function returns with no error.", "OnFunctionSuccess");
 
@@ -30,27 +28,9 @@ AddCondition(2, cf_trigger, "On function error", "Callbacks", "On function error
 AddStringParam("ID", "The id of the callback to wait for.");
 AddCondition(3, cf_trigger, "On function callback", "Callbacks", "On function callback with ID: {0}", "Triggered when a function returns, with or without error.", "OnFunctionCallback");
 
-AddStringParam("Event", "The name of the event to watch for.");
-AddCondition(4, cf_trigger, "On event", "Event", "On event: {0}", "Triggered when an event is triggered.", "OnEvent");
 
 //////////////////////////////////////////////////////////////
 // Actions
-
-AddStringParam("Name with parameters types", "The name of the function to call, in the form 'myMethod(uint256)'.");
-AddVariadicParams("Parameter {n}", "A parameter to pass for the function call.");
-AddStringParam("Callback id", "The id for identifying the callback.");
-AddAction(0, 0, "Call", "Methods", "Call constant method {0} ( {...} )", "Call a Constant Method", "Call");
-
-AddStringParam("Name with parameters types", "The name of the function to call, in the form 'myMethod(uint256)'.");
-AddVariadicParams("Parameter {n}", "A parameter to pass for the function call.");
-AddStringParam("Callback id", "The id for identifying the callback.");
-AddNumberParam("Value", "The value sent to the transaction");
-AddAction(1, 0, "Send", "Methods", "Call non-constant method: {0} ( {...} )", "Call a Non-Constant Method", "Send");
-
-AddStringParam("Name with parameters types", "The name of the function to call, in the form 'myMethod(uint256)'.");
-AddVariadicParams("Parameter {n}", "A parameter to pass for the function call.");
-AddStringParam("Callback id", "The id for identifying the callback.");
-AddAction(2, 0, "Estimate Gas", "Methods", "Estimate gas of {0} ( {...} )", "Estimate gas of a Non-Constant Method", "EstimateGas");
 
 AddStringParam("Hash", "The transaction hash.");
 AddStringParam("Callback id", "The id for identifying the callback.");
@@ -62,7 +42,7 @@ AddAction(3, 0, "Get Transaction Receipt", "Blocks", "Returns the receipt of tra
 // Expressions
 
 AddExpression(0, ef_return_string, "Current Account", "Ethereum", "CurrentAccount", "Get the Current Account Address.");
-AddExpression(1, ef_return_string, "Current Callback Function", "Ethereum", "CurrentCallbackFunction", "Get the Current Callback Function.");
+
 AddExpression(2, ef_return_string, "Current Callback ID", "Ethereum", "CurrentCallbackId", "Get the Current Callback ID.");
 AddExpression(3, ef_return_string, "Current Callback Error Message", "Ethereum", "CurrentCallbackError", "Get the Current Callback Function's error message.");
 AddExpression(4, ef_return_string, "Current Callback Response", "Ethereum", "CurrentCallbackResponse", "Get the Current Callback Function's response.");
@@ -86,10 +66,7 @@ AddExpression(8, ef_return_number, "Checks if the given string is an address", "
 ACESDone();
 
 // Property grid properties for this plugin
-var property_list = [
-	new cr.Property(ept_text,		"Contract address",		"",			"The contract's address."),
-	new cr.Property(ept_text,		"Contract ABI",			"",			"The contract's ABI array")
-	];
+var property_list = [];
 	
 // Called by IDE when a new object type is to be created
 function CreateIDEObjectType()

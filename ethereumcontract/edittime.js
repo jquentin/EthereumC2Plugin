@@ -52,35 +52,14 @@ AddVariadicParams("Parameter {n}", "A parameter to pass for the function call.")
 AddStringParam("Callback id", "The id for identifying the callback.");
 AddAction(2, 0, "Estimate Gas", "Methods", "Estimate gas of {0} ( {...} )", "Estimate gas of a Non-Constant Method", "EstimateGas");
 
-AddStringParam("Hash", "The transaction hash.");
-AddStringParam("Callback id", "The id for identifying the callback.");
-AddAction(3, 0, "Get Transaction Receipt", "Blocks", "Returns the receipt of transaction {0}", "Returns the receipt of a transaction by transaction hash", "GetTransactionReceipt");
-
-
 
 //////////////////////////////////////////////////////////////
 // Expressions
 
-AddExpression(0, ef_return_string, "Current Account", "Ethereum", "CurrentAccount", "Get the Current Account Address.");
 AddExpression(1, ef_return_string, "Current Callback Function", "Ethereum", "CurrentCallbackFunction", "Get the Current Callback Function.");
 AddExpression(2, ef_return_string, "Current Callback ID", "Ethereum", "CurrentCallbackId", "Get the Current Callback ID.");
 AddExpression(3, ef_return_string, "Current Callback Error Message", "Ethereum", "CurrentCallbackError", "Get the Current Callback Function's error message.");
 AddExpression(4, ef_return_string, "Current Callback Response", "Ethereum", "CurrentCallbackResponse", "Get the Current Callback Function's response.");
-
-AddNumberParam("Number", "The value in Unit");
-AddStringParam("Unit", "The unit to convert from.");
-AddExpression(5, ef_return_string, "Converts into wei", "Ethereum", "ToWei", "Converts an ethereum unit into wei.");
-
-AddNumberParam("Number", "The value in Wei");
-AddStringParam("Unit", "The unit to convert to.");
-AddExpression(6, ef_return_string, "Converts from wei", "Ethereum", "FromWei", "Converts a number of wei into ethereum units.");
-
-//AddVariadicParams("Elements", "The elements to hash.");
-AddExpression(7, ef_return_string | ef_variadic_parameters, "Hash the elements", "Ethereum", "Sha3", "Hashes the elements using web3.sha3.");
-
-AddStringParam("hex String", "An HEX string.");
-AddExpression(8, ef_return_number, "Checks if the given string is an address", "Ethereum", "IsAddress", "Checks if the given string is an address.");
-
 
 //////////////////////////////////////////////////////////////
 ACESDone();

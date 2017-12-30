@@ -171,12 +171,6 @@ cr.plugins_.EthereumContract = function(runtime)
 			contractInstance[name].estimateGas(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], paramsArray[4], function (err, res) { OnSendCallback (err, res, id); });
 	}
 	
-	
-	Acts.prototype.GetTransactionReceipt = function (hash, id)
-	{
-		web3.eth.getTransactionReceipt(hash, function (err, res) { OnSendCallback (err, res, id); });
-	}
-	
 	function OnSendCallback (error, result, id)
 	{
 		currentCallbackId = id;
@@ -203,11 +197,6 @@ cr.plugins_.EthereumContract = function(runtime)
 	// Expressions
 	function Exps() {};
 	
-	
-	Exps.prototype.CurrentAccount = function (ret)
-	{
-		ret.set_string(web3.eth.coinbase.toString());
-	};
 	Exps.prototype.CurrentCallbackFunction = function (ret)
 	{
 		ret.set_string(currentCallbackFunction);
@@ -224,31 +213,6 @@ cr.plugins_.EthereumContract = function(runtime)
 	{
 		ret.set_string(currentCallbackResponse ? currentCallbackResponse.toString() : "");
 	};
-	// Returns string because BigNumbers are not supported by set_int
-	Exps.prototype.ToWei = function (ret, number, unit)
-	{
-		ret.set_string(web3.toWei(number, unit).toString());
-	};
-	// Returns string because BigNumbers are not supported by set_int
-	Exps.prototype.FromWei = function (ret, number, unit)
-	{
-		ret.set_string(web3.fromWei(number, unit).toString());
-	};
-	Exps.prototype.Sha3 = function (ret, arg1_, arg2_, arg3_, arg4_, arg5_)
-	{
-		var arg1 = arg1_ || "";
-		var arg2 = arg2_ || "";
-		var arg3 = arg3_ || "";
-		var arg4 = arg4_ || "";
-		var arg5 = arg5_ || "";
-		
-		ret.set_string(web3.sha3(arg1 + arg2 + arg3 + arg4 + arg5));
-	};
-	Exps.prototype.IsAddress = function (ret, hexString)
-	{
-		ret.set_int(web3.isAddress(hexString) ? 1 : 0);
-	};
-	
 	
 	pluginProto.exps = new Exps();
 
