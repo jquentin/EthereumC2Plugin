@@ -175,6 +175,7 @@ cr.plugins_.EthereumContract = function(runtime)
 	{
 		currentCallbackId = id;
 		currentCallbackFunction = name;
+		console.log(inst);
 		if (error)
 		{
 			currentCallbackResponse = "";

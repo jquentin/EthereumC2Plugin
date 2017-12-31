@@ -96,10 +96,84 @@ cr.plugins_.Ethereum = function(runtime)
 	{
 		web3.eth.getTransactionReceipt(hash, function (err, res) { OnSendCallback (err, res, id); });
 	}
+	Acts.prototype.GetVersionNode = function (id)
+	{
+		web3.version.getNode(function (err, res) { OnSendCallback (err, res, id); });
+	}
+	
+	Acts.prototype.GetVersionNetwork = function (id)
+	{
+		web3.version.getNetwork(function (err, res) { OnSendCallback (err, res, id); });
+	}
+	Acts.prototype.GetVersionEthereum = function (id)
+	{
+		web3.version.getEthereum(function (err, res) { OnSendCallback (err, res, id); });
+	}
+	Acts.prototype.GetVersionWhisper = function (id)
+	{
+		web3.version.getWhisper(function (err, res) { OnSendCallback (err, res, id); });
+	}
+	
+	Acts.prototype.SetHttpProvider = function (url)
+	{
+		web3.setProvider (new web3.providers.HttpProvider(url));
+	}
+	
+	Acts.prototype.Reset = function (keepIsSyncing)
+	{
+		web3.reset (keepIsSyncing);
+	}
+	Acts.prototype.GetListening = function (id)
+	{
+		web3.net.getListening(function (err, res) { OnSendCallback (err, res, id); });
+	}
+	Acts.prototype.GetPeerCount = function (id)
+	{
+		web3.net.getPeerCount(function (err, res) { OnSendCallback (err, res, id); });
+	}
+	Acts.prototype.GetSyncing = function (id)
+	{
+		web3.eth.getSyncing(function (err, res) { OnSendCallback (err, res, id); });
+	}
+	Acts.prototype.GetCoinbase = function (id)
+	{
+		web3.eth.getCoinbase(function (err, res) { OnSendCallback (err, res, id); });
+	}
+	Acts.prototype.GetMining = function (id)
+	{
+		web3.eth.getMining(function (err, res) { OnSendCallback (err, res, id); });
+	}
+	Acts.prototype.GetHashrate = function (id)
+	{
+		web3.eth.getHashrate(function (err, res) { OnSendCallback (err, res, id); });
+	}
+	Acts.prototype.GetGasPrice = function (id)
+	{
+		web3.eth.getGasPrice(function (err, res) { OnSendCallback (err, res, id); });
+	}
+	Acts.prototype.GetAccounts = function (id)
+	{
+		web3.eth.getAccounts(function (err, res) { OnSendCallback (err, res, id); });
+	}
+	Acts.prototype.GetBlockNumber = function (id)
+	{
+		web3.eth.getBlockNumber(function (err, res) { OnSendCallback (err, res, id); });
+	}
+	
+	Acts.prototype.Register = function (add, id)
+	{
+		web3.eth.register(add, function (err, res) { OnSendCallback (err, res, id); });
+	}
+	
+	Acts.prototype.Unregister = function (add, id)
+	{
+		web3.eth.unregister(add, function (err, res) { OnSendCallback (err, res, id); });
+	}
 	
 	function OnSendCallback (error, result, id)
 	{
 		currentCallbackId = id;
+		console.log(inst);
 		if (error)
 		{
 			currentCallbackResponse = "";

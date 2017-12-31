@@ -36,6 +36,79 @@ AddStringParam("Hash", "The transaction hash.");
 AddStringParam("Callback id", "The id for identifying the callback.");
 AddAction(3, 0, "Get Transaction Receipt", "Blocks", "Returns the receipt of transaction {0}", "Returns the receipt of a transaction by transaction hash", "GetTransactionReceipt");
 
+AddStringParam("Callback id", "The id for identifying the callback.");
+AddAction(5, 0, "Get Node Version", "Version", "Returns the client/node version in a callback", "Returns the client/node version in a callback", "GetVersionNode");
+
+AddStringParam("Callback id", "The id for identifying the callback.");
+AddAction(6, 0, "Get Network Version", "Version", "Returns the network protocol version in a callback", "Returns the network protocol version in a callback", "GetVersionNetwork");
+
+AddStringParam("Callback id", "The id for identifying the callback.");
+AddAction(7, 0, "Get Ethereum Version", "Version", "Returns the Ethereum protocol version in a callback", "Returns the Ethereum protocol version in a callback", "GetVersionEthereum");
+
+AddStringParam("Callback id", "The id for identifying the callback.");
+AddAction(8, 0, "Get Whisper Version", "Version", "Returns the Whisper protocol version in a callback", "Returns the Whisper protocol version in a callback", "GetVersionWhisper");
+
+AddStringParam("Url", "The http provider url.");
+AddAction(9, 0, "Set HTTP Provider", "Web3", "Sets the web3 provider", "Sets the web3 provider", "SetHttpProvider");
+
+AddNumberParam("keepIsSyncing", "If true it will uninstall all filters, but will keep the web3.eth.isSyncing() polls.");
+AddAction(10, 0, "Reset State of Web3", "Web3", "Resets everything except manager. Uninstalls all filters. Stops polling.", "Resets everything except manager. Uninstalls all filters. Stops polling.", "Reset");
+
+
+
+AddStringParam("Callback id", "The id for identifying the callback.");
+AddAction(11, 0, "Get Is Listening", "Net", "Says whether the node is actively listening for network connections or not, in a callback.", "Says whether the node is actively listening for network connections or not, in a callback.", "GetListening");
+
+
+
+AddStringParam("Callback id", "The id for identifying the callback.");
+AddAction(12, 0, "Get Peer Count", "Net", "Returns the number of connected peers, in a callback.", "Returns the number of connected peers, in a callback.", "GetPeerCount");
+
+
+
+AddStringParam("Callback id", "The id for identifying the callback.");
+AddAction(13, 0, "Get Is Syncing", "Eth", "Returns either a sync object, when the node is syncing or false, in a callback.", "Returns either a sync object, when the node is syncing or false, in a callback.", "GetSyncing");
+
+
+AddStringParam("Callback id", "The id for identifying the callback.");
+AddAction(14, 0, "Get Coinbase", "Eth", "Returns the coinbase address, in a callback.", "Returns the coinbase address, in a callback.", "GetCoinbase");
+
+
+AddStringParam("Callback id", "The id for identifying the callback.");
+AddAction(15, 0, "Get Mining", "Eth", "Returns whether the node is mining or not, in a callback.", "Returns whether the node is mining or not, in a callback.", "GetMining");
+
+
+AddStringParam("Callback id", "The id for identifying the callback.");
+AddAction(16, 0, "Get Hashrate", "Eth", "Returns the number of hashes per second that the node is mining, in a callback.", "Returns the number of hashes per second that the node is mining, in a callback.", "GetHashrate");
+
+
+AddStringParam("Callback id", "The id for identifying the callback.");
+AddAction(17, 0, "Get Gas Price", "Eth", "Returns the current gas price, in a callback.", "Returns the current gas price, in a callback.", "GetGasPrice");
+
+
+AddStringParam("Callback id", "The id for identifying the callback.");
+AddAction(18, 0, "Get Accounts", "Eth", "Returns the list of accounts the node controls, in a callback.", "Returns the list of accounts the node controls, in a callback.", "GetAccounts");
+
+
+AddStringParam("Callback id", "The id for identifying the callback.");
+AddAction(19, 0, "Get Block Number", "Eth", "Returns the current block number, in a callback.", "Returns the current block number, in a callback.", "GetBlockNumber");
+
+AddStringParam("AddressHexString ", "The address to register.");
+AddStringParam("Callback id", "The id for identifying the callback.");
+AddAction(20, 0, "Register", "Eth", "Registers the given address.", "Registers the given address .", "Register");
+
+
+AddStringParam("AddressHexString ", "The address to unregister.");
+AddStringParam("Callback id", "The id for identifying the callback.");
+AddAction(21, 0, "Unregister", "Eth", "Unregisters the given address.", "Unregisters the given address .", "Unregister");
+
+
+
+
+
+
+
+
 
 
 //////////////////////////////////////////////////////////////
