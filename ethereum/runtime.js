@@ -151,7 +151,106 @@ cr.plugins_.Ethereum = function(runtime)
 	{
 		ret.set_int(web3.isAddress(hexString) ? 1 : 0);
 	};
-	
+	Exps.prototype.VersionAPI = function (ret)
+	{
+		ret.set_string(web3.version.api);
+	};
+	Exps.prototype.VersionNode = function (ret)
+	{
+		ret.set_string(web3.version.node);
+	};
+	Exps.prototype.VersionNetwork = function (ret)
+	{
+		ret.set_string(web3.version.network);
+	};
+	Exps.prototype.VersionEthereum = function (ret)
+	{
+		ret.set_string(web3.version.ethereum);
+	};
+	Exps.prototype.VersionWhisper = function (ret)
+	{
+		ret.set_string(web3.version.whisper);
+	};
+	Exps.prototype.IsConnected = function (ret)
+	{
+		ret.set_int(web3.isConnected() ? 1 : 0);
+	};
+	Exps.prototype.CurrentProvider = function (ret)
+	{
+		ret.set_string(web3.currentProvider);
+	};
+	Exps.prototype.ToHex = function (ret, value)
+	{
+		ret.set_string(web3.toHex(value));
+	};
+	Exps.prototype.ToAscii = function (ret, hexString)
+	{
+		ret.set_string(web3.toAscii(hexString));
+	};
+	Exps.prototype.FromAscii = function (ret, s)
+	{
+		ret.set_string(web3.fromAscii(s));
+	};
+	Exps.prototype.ToDecimal = function (ret, s)
+	{
+		ret.set_int(web3.toDecimal(s));
+	};
+	Exps.prototype.FromDecimal = function (ret, n)
+	{
+		ret.set_string(web3.fromDecimal(n));
+	};
+	Exps.prototype.Coinbase = function (ret)
+	{
+		ret.set_string(web3.eth.coinbase);
+	};
+	Exps.prototype.IsMining = function (ret)
+	{
+		ret.set_int(web3.eth.mining ? 1 : 0);
+	};
+	Exps.prototype.HashRate = function (ret)
+	{
+		ret.set_int(web3.eth.hashrate);
+	};
+	Exps.prototype.GasPrice = function (ret)
+	{
+		ret.set_string(web3.eth.gasPrice);
+	};
+	Exps.prototype.Accounts = function (ret)
+	{
+		ret.set_string(web3.eth.accounts);
+	};
+	Exps.prototype.BlockNumber = function (ret)
+	{
+		ret.set_int(web3.eth.blockNumber);
+	};
+	Exps.prototype.GetBalance = function (ret, address)
+	{
+		ret.set_string(web3.eth.getBalance(address));
+	};
+	Exps.prototype.GetBalanceAtBlock = function (ret, address, block)
+	{
+		ret.set_string(web3.eth.getBalance(address, block));
+	};
+	Exps.prototype.GetStorage = function (ret, addressHexString, position)
+	{
+		ret.set_string(web3.eth.getStorage(addressHexString, position));
+	};
+	Exps.prototype.GetStorageAtBlock = function (ret, addressHexString, position, block)
+	{
+		ret.set_string(web3.eth.getStorage(addressHexString, position, block));
+	};
+	Exps.prototype.GetCode = function (ret, address)
+	{
+		ret.set_string(web3.eth.getCode(address));
+	};
+	Exps.prototype.GetCodeAtBlock = function (ret, address, block)
+	{
+		ret.set_string(web3.eth.getCode(address, block));
+	};
+	Exps.prototype.GetBlock = function (ret, block)
+	{
+		ret.set_string(web3.eth.getBlock(block));
+	};
 	
 	pluginProto.exps = new Exps();
 

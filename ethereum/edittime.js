@@ -43,23 +43,96 @@ AddAction(3, 0, "Get Transaction Receipt", "Blocks", "Returns the receipt of tra
 
 AddExpression(0, ef_return_string, "Current Account", "Ethereum", "CurrentAccount", "Get the Current Account Address.");
 
-AddExpression(2, ef_return_string, "Current Callback ID", "Ethereum", "CurrentCallbackId", "Get the Current Callback ID.");
-AddExpression(3, ef_return_string, "Current Callback Error Message", "Ethereum", "CurrentCallbackError", "Get the Current Callback Function's error message.");
-AddExpression(4, ef_return_string, "Current Callback Response", "Ethereum", "CurrentCallbackResponse", "Get the Current Callback Function's response.");
+AddExpression(2, ef_return_string, "Current Callback ID", "Callbacks", "CurrentCallbackId", "Get the Current Callback ID.");
+AddExpression(3, ef_return_string, "Current Callback Error Message", "Callbacks", "CurrentCallbackError", "Get the Current Callback's error message.");
+AddExpression(4, ef_return_string, "Current Callback Response", "Callbacks", "CurrentCallbackResponse", "Get the Current Callback's response.");
 
 AddNumberParam("Number", "The value in Unit");
 AddStringParam("Unit", "The unit to convert from.");
-AddExpression(5, ef_return_string, "Converts into wei", "Ethereum", "ToWei", "Converts an ethereum unit into wei.");
+AddExpression(5, ef_return_string, "Converts into wei", "Web3", "ToWei", "Converts an ethereum unit into wei.");
 
 AddNumberParam("Number", "The value in Wei");
 AddStringParam("Unit", "The unit to convert to.");
-AddExpression(6, ef_return_string, "Converts from wei", "Ethereum", "FromWei", "Converts a number of wei into ethereum units.");
+AddExpression(6, ef_return_string, "Converts from wei", "Web3", "FromWei", "Converts a number of wei into ethereum units.");
 
 //AddVariadicParams("Elements", "The elements to hash.");
 AddExpression(7, ef_return_string | ef_variadic_parameters, "Hash the elements", "Ethereum", "Sha3", "Hashes the elements using web3.sha3.");
 
 AddStringParam("hex String", "An HEX string.");
-AddExpression(8, ef_return_number, "Checks if the given string is an address", "Ethereum", "IsAddress", "Checks if the given string is an address.");
+AddExpression(8, ef_return_number, "Checks if the given string is an address", "Web3", "IsAddress", "Checks if the given string is an address.");
+
+AddExpression(9, ef_return_string, "The ethereum js api version", "Version", "VersionAPI", "The ethereum js api version");
+
+AddExpression(10, ef_return_string, "The client/node version.", "Version", "VersionNode", "The client/node version.");
+
+AddExpression(11, ef_return_string, "The network protocol version.", "Version", "VersionNetwork", "The network protocol version.");
+
+AddExpression(12, ef_return_string, "The ethereum protocol version", "Version", "VersionEthereum", "The ethereum protocol version");
+
+AddExpression(13, ef_return_string, "The whisper protocol version.", "Version", "VersionWhisper", "The whisper protocol version.");
+
+AddExpression(14, ef_return_number, "Should be called to check if a connection to a node exists.", "Web3", "IsConnected", "Should be called to check if a connection to a node exists.");
+
+AddExpression(15, ef_return_string, "Will contain the current provider, if one is set.", "Web3", "CurrentProvider", "Will contain the current provider, if one is set.");
+
+AddAnyTypeParam("Value", "The value to parse to HEX.");
+AddExpression(16, ef_return_string, "Converts any value into HEX.", "Web3", "ToHex", "Converts any value into HEX.");
+
+AddStringParam("HexString", "A HEX string to be converted to ascii.");
+AddExpression(17, ef_return_string, "Converts a HEX string into a ASCII string.", "Web3", "ToAscii", "Converts a HEX string into a ASCII string.");
+
+AddStringParam("String", "An ASCII string to be converted to HEX.");
+AddExpression(18, ef_return_string, "Converts any ASCII string to a HEX string.", "Web3", "FromAscii", "Converts any ASCII string to a HEX string.");
+
+AddStringParam("String", "An HEX string to be converted to a number.");
+AddExpression(19, ef_return_number, "Converts a HEX string to its number representation.", "Web3", "ToDecimal", "Converts a HEX string to its number representation.");
+
+AddAnyTypeParam("Number", "A number to be converted to a HEX string.");
+AddExpression(20, ef_return_string, "Converts a number or number string to its HEX representation.", "Web3", "FromDecimal", "Converts a number or number string to its HEX representation.");
+
+AddExpression(21, ef_return_string, "The coinbase address of the client.", "Eth", "Coinbase", "The coinbase address of the client.");
+
+AddExpression(22, ef_return_number, "says whether the node is mining or not.", "Eth", "IsMining", "says whether the node is mining or not.");
+
+AddExpression(23, ef_return_number, "returns the number of hashes per second that the node is mining with.", "Eth", "HashRate", "returns the number of hashes per second that the node is mining with.");
+
+AddExpression(24, ef_return_string, "returns the current gas price.", "Eth", "GasPrice", "returns the current gas price.");
+
+AddExpression(25, ef_return_string, "returns a list of accounts the node controls.", "Eth", "Accounts", "returns a list of accounts the node controls.");
+
+AddExpression(26, ef_return_number, "returns the current block number.", "Eth", "BlockNumber", "returns the current block number.");
+
+
+AddStringParam("Address", "The address to get the balance of.");
+AddExpression(27, ef_return_string, "Get the balance of an address at the current block.", "Eth", "GetBalance", "Get the balance of an address at the current block.");
+
+AddStringParam("Address", "The address to get the balance of.");
+AddAnyTypeParam("Block", "The block at which to get the balance.");
+AddExpression(28, ef_return_string, "Get the balance of an address at a given block.", "Eth", "GetBalanceAtBlock", "Get the balance of an address at a given block.");
+
+AddStringParam("addressHexString", "The address to get the storage from.");
+AddNumberParam("position", "The index position of the storage.")
+AddExpression(29, ef_return_string, "Get the storage at a specific position of an address.", "Eth", "GetStorage", "Get the storage at a specific position of an address.");
+
+
+AddStringParam("addressHexString", "The address to get the storage from.");
+AddNumberParam("position", "The index position of the storage.")
+AddAnyTypeParam("Block", "The block at which to get the storage.");
+AddExpression(30, ef_return_string, "Get the storage at a specific position of an address at a given block.", "Eth", "GetStorageAtBlock", "Get the storage at a specific position of an address at a given block.");
+
+
+AddStringParam("Address", "The address to get the code from.");
+AddExpression(31, ef_return_string, "Get the code at a specific address.", "Eth", "GetCode", "Get the code at a specific address.");
+
+
+AddStringParam("Address", "The address to get the code from.");
+AddAnyTypeParam("Block", "The block at which to get the code.");
+AddExpression(32, ef_return_string, "Get the code at a specific address at a given block.", "Eth", "GetCodeAtBlock", "Get the code at a specific address at a given block.");
+
+AddAnyTypeParam("Block", "The block at which to get the code.");
+AddExpression(33, ef_return_string, "Returns a block matching the block number or block hash.", "Eth", "GetBlock", "Returns a block matching the block number or block hash.");
+
+
 
 
 //////////////////////////////////////////////////////////////
