@@ -92,6 +92,18 @@ cr.plugins_.Ethereum = function(runtime)
 	// Actions
 	function Acts() {};
 	
+	Exps.prototype.CurrentCallbackId = function (ret)
+	{
+		ret.set_string(currentCallbackId);
+	};
+	Exps.prototype.CurrentCallbackError = function (ret)
+	{
+		ret.set_string(currentCallbackError ? currentCallbackError.toString() : "");
+	};
+	Exps.prototype.CurrentCallbackResponse = function (ret)
+	{
+		ret.set_string(currentCallbackResponse ? currentCallbackResponse.toString() : "");
+	};
 	Acts.prototype.GetTransactionReceipt = function (hash, id)
 	{
 		web3.eth.getTransactionReceipt(hash, function (err, res) { OnSendCallback (err, res, id); });
