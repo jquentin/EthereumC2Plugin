@@ -79,8 +79,6 @@ cr.plugins_.EthereumContract = function(runtime)
 				runtime.trigger(pluginProto.cnds.OnEvent, inst);
 			}
 		});
-		
-		runtime.trigger(pluginProto.cnds.OnContractLoaded, inst);
 
 	};
 	
@@ -96,21 +94,17 @@ cr.plugins_.EthereumContract = function(runtime)
 	// Conditions
 	function Cnds() {};
 	
-	Cnds.prototype.OnContractLoaded = function ()
-	{
-		return true;
-	};
 	Cnds.prototype.OnFunctionSuccess = function (id)
 	{
-		return currentCallbackId == id;
+		return id == '' || currentCallbackId == id;
 	};
 	Cnds.prototype.OnFunctionError = function (id)
 	{
-		return currentCallbackId == id;
+		return id == '' || currentCallbackId == id;
 	};
 	Cnds.prototype.OnFunctionCallback = function (id)
 	{
-		return currentCallbackId == id;
+		return id == '' || currentCallbackId == id;
 	};
 	Cnds.prototype.OnEvent = function (ev)
 	{
@@ -126,52 +120,52 @@ cr.plugins_.EthereumContract = function(runtime)
 	Acts.prototype.Call = function (name, paramsArray, id)
 	{
 		if (paramsArray.length == 0 || paramsArray.length == 1 && paramsArray[0] == '')
-			contractInstance[name].call(function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].call(function (err, res) { OnCallback (err, res, id); });
 		else if (paramsArray.length == 1)
-			contractInstance[name].call(paramsArray[0], function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].call(paramsArray[0], function (err, res) { OnCallback (err, res, id); });
 		else if (paramsArray.length == 2)
-			contractInstance[name].call(paramsArray[0], paramsArray[1], function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].call(paramsArray[0], paramsArray[1], function (err, res) { OnCallback (err, res, id); });
 		else if (paramsArray.length == 3)
-			contractInstance[name].call(paramsArray[0], paramsArray[1], paramsArray[2], function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].call(paramsArray[0], paramsArray[1], paramsArray[2], function (err, res) { OnCallback (err, res, id); });
 		else if (paramsArray.length == 4)
-			contractInstance[name].call(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].call(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], function (err, res) { OnCallback (err, res, id); });
 		else if (paramsArray.length == 5)
-			contractInstance[name].call(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], paramsArray[4], function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].call(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], paramsArray[4], function (err, res) { OnCallback (err, res, id); });
 	}
 	
 	Acts.prototype.Send = function (name, paramsArray, id, v)
 	{
 		if (paramsArray.length == 0 || paramsArray.length == 1 && paramsArray[0] == '')
-			contractInstance[name].sendTransaction({value:v}, function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].sendTransaction({value:v}, function (err, res) { OnCallback (err, res, id); });
 		else if (paramsArray.length == 1)
-			contractInstance[name].sendTransaction(paramsArray[0], {value:v}, function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].sendTransaction(paramsArray[0], {value:v}, function (err, res) { OnCallback (err, res, id); });
 		else if (paramsArray.length == 2)
-			contractInstance[name].sendTransaction(paramsArray[0], paramsArray[1], {value:v}, function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].sendTransaction(paramsArray[0], paramsArray[1], {value:v}, function (err, res) { OnCallback (err, res, id); });
 		else if (paramsArray.length == 3)
-			contractInstance[name].sendTransaction(paramsArray[0], paramsArray[1], paramsArray[2], {value:v}, function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].sendTransaction(paramsArray[0], paramsArray[1], paramsArray[2], {value:v}, function (err, res) { OnCallback (err, res, id); });
 		else if (paramsArray.length == 4)
-			contractInstance[name].sendTransaction(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], {value:v}, function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].sendTransaction(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], {value:v}, function (err, res) { OnCallback (err, res, id); });
 		else if (paramsArray.length == 5)
-			contractInstance[name].sendTransaction(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], paramsArray[4], {value:v}, function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].sendTransaction(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], paramsArray[4], {value:v}, function (err, res) { OnCallback (err, res, id); });
 	}
 	
 	Acts.prototype.EstimateGas = function (name, paramsArray, id)
 	{
 		if (paramsArray.length == 0 || paramsArray.length == 1 && paramsArray[0] == '')
-			contractInstance[name].estimateGas(function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].estimateGas(function (err, res) { OnCallback (err, res, id); });
 		else if (paramsArray.length == 1)
-			contractInstance[name].estimateGas(paramsArray[0], function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].estimateGas(paramsArray[0], function (err, res) { OnCallback (err, res, id); });
 		else if (paramsArray.length == 2)
-			contractInstance[name].estimateGas(paramsArray[0], paramsArray[1], function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].estimateGas(paramsArray[0], paramsArray[1], function (err, res) { OnCallback (err, res, id); });
 		else if (paramsArray.length == 3)
-			contractInstance[name].estimateGas(paramsArray[0], paramsArray[1], paramsArray[2], function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].estimateGas(paramsArray[0], paramsArray[1], paramsArray[2], function (err, res) { OnCallback (err, res, id); });
 		else if (paramsArray.length == 4)
-			contractInstance[name].estimateGas(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].estimateGas(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], function (err, res) { OnCallback (err, res, id); });
 		else if (paramsArray.length == 5)
-			contractInstance[name].estimateGas(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], paramsArray[4], function (err, res) { OnSendCallback (err, res, id); });
+			contractInstance[name].estimateGas(paramsArray[0], paramsArray[1], paramsArray[2], paramsArray[3], paramsArray[4], function (err, res) { OnCallback (err, res, id); });
 	}
 	
-	function OnSendCallback (error, result, id)
+	function OnCallback (error, result, id)
 	{
 		currentCallbackId = id;
 		currentCallbackFunction = name;
@@ -198,10 +192,6 @@ cr.plugins_.EthereumContract = function(runtime)
 	// Expressions
 	function Exps() {};
 	
-	Exps.prototype.CurrentCallbackFunction = function (ret)
-	{
-		ret.set_string(currentCallbackFunction);
-	};
 	Exps.prototype.CurrentCallbackId = function (ret)
 	{
 		ret.set_string(currentCallbackId);

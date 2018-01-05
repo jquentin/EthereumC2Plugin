@@ -19,15 +19,13 @@
 //////////////////////////////////////////////////////////////
 // Conditions
 
-AddCondition(0, cf_trigger, "On contract loaded", "Ethereum", "On contract loaded", "Triggered when the contract is loaded", "OnContractLoaded");
-
-AddStringParam("ID", "The id of the callback to wait for.");
+AddStringParam("ID", "The id of the callback to wait for. Leave empty to listen to all callbacks.");
 AddCondition(1, cf_trigger, "On function success", "Callbacks", "On function success with ID: {0}", "Triggered when a function returns with no error.", "OnFunctionSuccess");
 
-AddStringParam("ID", "The id of the callback to wait for.");
+AddStringParam("ID", "The id of the callback to wait for. Leave empty to listen to all callbacks.");
 AddCondition(2, cf_trigger, "On function error", "Callbacks", "On function error with ID: {0}", "Triggered when a function returns with an error.", "OnFunctionError");
 
-AddStringParam("ID", "The id of the callback to wait for.");
+AddStringParam("ID", "The id of the callback to wait for. Leave empty to listen to all callbacks.");
 AddCondition(3, cf_trigger, "On function callback", "Callbacks", "On function callback with ID: {0}", "Triggered when a function returns, with or without error.", "OnFunctionCallback");
 
 AddStringParam("Event", "The name of the event to watch for.");
@@ -56,10 +54,9 @@ AddAction(2, 0, "Estimate Gas", "Methods", "Estimate gas of {0} ( {...} )", "Est
 //////////////////////////////////////////////////////////////
 // Expressions
 
-AddExpression(1, ef_return_string, "Current Callback Function", "Ethereum", "CurrentCallbackFunction", "Get the Current Callback Function.");
 AddExpression(2, ef_return_string, "Current Callback ID", "Ethereum", "CurrentCallbackId", "Get the Current Callback ID.");
-AddExpression(3, ef_return_string, "Current Callback Error Message", "Ethereum", "CurrentCallbackError", "Get the Current Callback Function's error message.");
-AddExpression(4, ef_return_string, "Current Callback Response", "Ethereum", "CurrentCallbackResponse", "Get the Current Callback Function's response.");
+AddExpression(3, ef_return_string, "Current Callback Error Message", "Ethereum", "CurrentCallbackError", "Get the Current Callback's error message.");
+AddExpression(4, ef_return_string, "Current Callback Response", "Ethereum", "CurrentCallbackResponse", "Get the Current Callback's response.");
 
 //////////////////////////////////////////////////////////////
 ACESDone();
