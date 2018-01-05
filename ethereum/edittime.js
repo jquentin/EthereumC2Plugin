@@ -19,13 +19,13 @@
 //////////////////////////////////////////////////////////////
 // Conditions
 
-AddStringParam("ID", "The id of the callback to wait for.");
+AddStringParam("ID", "The id of the callback to wait for. Leave empty to listen to all callbacks.");
 AddCondition(1, cf_trigger, "On function success", "Callbacks", "On function success with ID: {0}", "Triggered when a function returns with no error.", "OnFunctionSuccess");
 
-AddStringParam("ID", "The id of the callback to wait for.");
+AddStringParam("ID", "The id of the callback to wait for. Leave empty to listen to all callbacks.");
 AddCondition(2, cf_trigger, "On function error", "Callbacks", "On function error with ID: {0}", "Triggered when a function returns with an error.", "OnFunctionError");
 
-AddStringParam("ID", "The id of the callback to wait for.");
+AddStringParam("ID", "The id of the callback to wait for. Leave empty to listen to all callbacks.");
 AddCondition(3, cf_trigger, "On function callback", "Callbacks", "On function callback with ID: {0}", "Triggered when a function returns, with or without error.", "OnFunctionCallback");
 
 
@@ -54,41 +54,29 @@ AddAction(9, 0, "Set HTTP Provider", "Web3", "Sets the web3 provider", "Sets the
 AddNumberParam("keepIsSyncing", "If true it will uninstall all filters, but will keep the web3.eth.isSyncing() polls.");
 AddAction(10, 0, "Reset State of Web3", "Web3", "Resets everything except manager. Uninstalls all filters. Stops polling.", "Resets everything except manager. Uninstalls all filters. Stops polling.", "Reset");
 
-
-
 AddStringParam("Callback id", "The id for identifying the callback.");
 AddAction(11, 0, "Get Is Listening", "Net", "Says whether the node is actively listening for network connections or not, in a callback.", "Says whether the node is actively listening for network connections or not, in a callback.", "GetListening");
-
-
 
 AddStringParam("Callback id", "The id for identifying the callback.");
 AddAction(12, 0, "Get Peer Count", "Net", "Returns the number of connected peers, in a callback.", "Returns the number of connected peers, in a callback.", "GetPeerCount");
 
-
-
 AddStringParam("Callback id", "The id for identifying the callback.");
 AddAction(13, 0, "Get Is Syncing", "Eth", "Returns either a sync object, when the node is syncing or false, in a callback.", "Returns either a sync object, when the node is syncing or false, in a callback.", "GetSyncing");
-
 
 AddStringParam("Callback id", "The id for identifying the callback.");
 AddAction(14, 0, "Get Coinbase", "Eth", "Returns the coinbase address, in a callback.", "Returns the coinbase address, in a callback.", "GetCoinbase");
 
-
 AddStringParam("Callback id", "The id for identifying the callback.");
 AddAction(15, 0, "Get Mining", "Eth", "Returns whether the node is mining or not, in a callback.", "Returns whether the node is mining or not, in a callback.", "GetMining");
-
 
 AddStringParam("Callback id", "The id for identifying the callback.");
 AddAction(16, 0, "Get Hashrate", "Eth", "Returns the number of hashes per second that the node is mining, in a callback.", "Returns the number of hashes per second that the node is mining, in a callback.", "GetHashrate");
 
-
 AddStringParam("Callback id", "The id for identifying the callback.");
 AddAction(17, 0, "Get Gas Price", "Eth", "Returns the current gas price, in a callback.", "Returns the current gas price, in a callback.", "GetGasPrice");
 
-
 AddStringParam("Callback id", "The id for identifying the callback.");
 AddAction(18, 0, "Get Accounts", "Eth", "Returns the list of accounts the node controls, in a callback.", "Returns the list of accounts the node controls, in a callback.", "GetAccounts");
-
 
 AddStringParam("Callback id", "The id for identifying the callback.");
 AddAction(19, 0, "Get Block Number", "Eth", "Returns the current block number, in a callback.", "Returns the current block number, in a callback.", "GetBlockNumber");
@@ -97,18 +85,9 @@ AddStringParam("AddressHexString ", "The address to register.");
 AddStringParam("Callback id", "The id for identifying the callback.");
 AddAction(20, 0, "Register", "Eth", "Registers the given address.", "Registers the given address .", "Register");
 
-
 AddStringParam("AddressHexString ", "The address to unregister.");
 AddStringParam("Callback id", "The id for identifying the callback.");
 AddAction(21, 0, "Unregister", "Eth", "Unregisters the given address.", "Unregisters the given address .", "Unregister");
-
-
-
-
-
-
-
-
 
 
 //////////////////////////////////////////////////////////////
@@ -128,7 +107,6 @@ AddNumberParam("Number", "The value in Wei");
 AddStringParam("Unit", "The unit to convert to.");
 AddExpression(6, ef_return_string, "Converts from wei", "Web3", "FromWei", "Converts a number of wei into ethereum units.");
 
-//AddVariadicParams("Elements", "The elements to hash.");
 AddExpression(7, ef_return_string | ef_variadic_parameters, "Hash the elements", "Ethereum", "Sha3", "Hashes the elements using web3.sha3.");
 
 AddStringParam("hex String", "An HEX string.");
@@ -175,7 +153,6 @@ AddExpression(25, ef_return_string, "returns a list of accounts the node control
 
 AddExpression(26, ef_return_number, "returns the current block number.", "Eth", "BlockNumber", "returns the current block number.");
 
-
 AddStringParam("Address", "The address to get the balance of.");
 AddExpression(27, ef_return_string, "Get the balance of an address at the current block.", "Eth", "GetBalance", "Get the balance of an address at the current block.");
 
@@ -187,16 +164,13 @@ AddStringParam("addressHexString", "The address to get the storage from.");
 AddNumberParam("position", "The index position of the storage.")
 AddExpression(29, ef_return_string, "Get the storage at a specific position of an address.", "Eth", "GetStorage", "Get the storage at a specific position of an address.");
 
-
 AddStringParam("addressHexString", "The address to get the storage from.");
 AddNumberParam("position", "The index position of the storage.")
 AddAnyTypeParam("Block", "The block at which to get the storage.");
 AddExpression(30, ef_return_string, "Get the storage at a specific position of an address at a given block.", "Eth", "GetStorageAtBlock", "Get the storage at a specific position of an address at a given block.");
 
-
 AddStringParam("Address", "The address to get the code from.");
 AddExpression(31, ef_return_string, "Get the code at a specific address.", "Eth", "GetCode", "Get the code at a specific address.");
-
 
 AddStringParam("Address", "The address to get the code from.");
 AddAnyTypeParam("Block", "The block at which to get the code.");
@@ -204,8 +178,6 @@ AddExpression(32, ef_return_string, "Get the code at a specific address at a giv
 
 AddAnyTypeParam("Block", "The block at which to get the code.");
 AddExpression(33, ef_return_string, "Returns a block matching the block number or block hash.", "Eth", "GetBlock", "Returns a block matching the block number or block hash.");
-
-
 
 
 //////////////////////////////////////////////////////////////

@@ -75,15 +75,15 @@ cr.plugins_.Ethereum = function(runtime)
 	
 	Cnds.prototype.OnFunctionSuccess = function (id)
 	{
-		return currentCallbackId == id;
+		return id == '' || currentCallbackId == id;
 	};
 	Cnds.prototype.OnFunctionError = function (id)
 	{
-		return currentCallbackId == id;
+		return id == '' || currentCallbackId == id;
 	};
 	Cnds.prototype.OnFunctionCallback = function (id)
 	{
-		return currentCallbackId == id;
+		return id == '' || currentCallbackId == id;
 	};
 	
 	pluginProto.cnds = new Cnds();
