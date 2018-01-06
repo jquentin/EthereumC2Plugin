@@ -56,7 +56,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="ContractA" uid="4">
+                <instance type="ContractATitle" uid="4">
                     <properties>
                         <text>Contract A:</text>
                         <initial-visibility>Visible</initial-visibility>
@@ -83,7 +83,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="YourNumber" uid="5">
+                <instance type="ContractAYourNumber" uid="5">
                     <properties>
                         <text>Your number is:</text>
                         <initial-visibility>Visible</initial-visibility>
@@ -101,8 +101,8 @@
                         <x>221</x>
                         <y>260</y>
                         <z>0</z>
-                        <width>200</width>
-                        <height>30</height>
+                        <width>288</width>
+                        <height>57</height>
                         <depth>0</depth>
                         <hotspotX>0</hotspotX>
                         <hotspotY>0</hotspotY>
@@ -110,7 +110,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="SetYourNumberTextBox" uid="6">
+                <instance type="ContractASetNumTextBox" uid="6">
                     <properties>
                         <text></text>
                         <placeholder>Set your number</placeholder>
@@ -136,7 +136,7 @@
                         <hotspotY>0</hotspotY>
                     </world>
                 </instance>
-                <instance type="SetYourNumberButton" uid="7">
+                <instance type="ContractASetNumButton" uid="7">
                     <properties>
                         <type>Button</type>
                         <text>OK</text>
@@ -160,7 +160,7 @@
                         <hotspotY>0</hotspotY>
                     </world>
                 </instance>
-                <instance type="WaitingForMining" uid="2">
+                <instance type="ContractAWaitingForMining" uid="2">
                     <properties>
                         <text>Waiting for mining...</text>
                         <initial-visibility>Invisible</initial-visibility>
@@ -187,14 +187,151 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
+                <instance type="ContractBTitle" uid="10">
+                    <properties>
+                        <text>Contract B:</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Arial,-16</font>
+                        <color>0,0,0</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>543</x>
+                        <y>216</y>
+                        <z>0</z>
+                        <width>200</width>
+                        <height>30</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="ContractBYourNumber" uid="11">
+                    <properties>
+                        <text>Your number is:</text>
+                        <initial-visibility>Visible</initial-visibility>
+                        <font>Arial,-16</font>
+                        <color>0,0,0</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>529</x>
+                        <y>254</y>
+                        <z>0</z>
+                        <width>299</width>
+                        <height>56</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
+                <instance type="ContractBSetNumTextBox" uid="12">
+                    <properties>
+                        <text></text>
+                        <placeholder>Set your number</placeholder>
+                        <tooltip></tooltip>
+                        <initial-visibility>Visible</initial-visibility>
+                        <enabled>Yes</enabled>
+                        <read-only>No</read-only>
+                        <spell-check>No</spell-check>
+                        <type>Text</type>
+                        <auto-font-size>Yes</auto-font-size>
+                        <id-optional></id-optional>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>522</x>
+                        <y>320</y>
+                        <z>0</z>
+                        <width>150</width>
+                        <height>22</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                    </world>
+                </instance>
+                <instance type="ContractBSetNumButton" uid="13">
+                    <properties>
+                        <type>Button</type>
+                        <text>OK</text>
+                        <tooltip></tooltip>
+                        <initial-visibility>Visible</initial-visibility>
+                        <enabled>Yes</enabled>
+                        <auto-font-size>Yes</auto-font-size>
+                        <id-optional></id-optional>
+                        <checked>No</checked>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>681</x>
+                        <y>317</y>
+                        <z>0</z>
+                        <width>72</width>
+                        <height>24</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                    </world>
+                </instance>
+                <instance type="ContractBWaitingForMining" uid="14">
+                    <properties>
+                        <text>Waiting for mining...</text>
+                        <initial-visibility>Invisible</initial-visibility>
+                        <font>Arial,-16</font>
+                        <color>0,0,0</color>
+                        <horizontal-alignment>Left</horizontal-alignment>
+                        <vertical-alignment>Top</vertical-alignment>
+                        <hotspot>Top-left</hotspot>
+                        <wrapping>Word</wrapping>
+                        <line-height>0</line-height>
+                    </properties>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>527</x>
+                        <y>369</y>
+                        <z>0</z>
+                        <width>200</width>
+                        <height>30</height>
+                        <depth>0</depth>
+                        <hotspotX>0</hotspotX>
+                        <hotspotY>0</hotspotY>
+                        <angle>0</angle>
+                        <opacity>1</opacity>
+                    </world>
+                </instance>
             </instances>
             <effects />
         </layer>
     </layers>
     <nonworld-instances>
-        <instance type="ExampleContractA" uid="1">
+        <instance type="ContractA" uid="1">
             <properties>
                 <contract-address>0x91c9b16ad9234f72dbddb4c35adc001b7e662a51</contract-address>
+                <contract-abi>[{&quot;constant&quot;: true,&quot;inputs&quot;: [],&quot;name&quot;: &quot;GetMyNumber&quot;,&quot;outputs&quot;: [{&quot;name&quot;: &quot;&quot;,&quot;type&quot;: &quot;uint8&quot;}],&quot;payable&quot;: false,&quot;stateMutability&quot;: &quot;view&quot;,&quot;type&quot;: &quot;function&quot;},{&quot;constant&quot;: false,&quot;inputs&quot;: [{&quot;name&quot;: &quot;n&quot;,&quot;type&quot;: &quot;uint8&quot;}],&quot;name&quot;: &quot;SetMyNumber&quot;,&quot;outputs&quot;: [],&quot;payable&quot;: false,&quot;stateMutability&quot;: &quot;nonpayable&quot;,&quot;type&quot;: &quot;function&quot;}]</contract-abi>
+            </properties>
+        </instance>
+        <instance type="ContractB" uid="9">
+            <properties>
+                <contract-address>0x019522ece49b49f729d3ad0d33eaeaa71c781124</contract-address>
                 <contract-abi>[{&quot;constant&quot;: true,&quot;inputs&quot;: [],&quot;name&quot;: &quot;GetMyNumber&quot;,&quot;outputs&quot;: [{&quot;name&quot;: &quot;&quot;,&quot;type&quot;: &quot;uint8&quot;}],&quot;payable&quot;: false,&quot;stateMutability&quot;: &quot;view&quot;,&quot;type&quot;: &quot;function&quot;},{&quot;constant&quot;: false,&quot;inputs&quot;: [{&quot;name&quot;: &quot;n&quot;,&quot;type&quot;: &quot;uint8&quot;}],&quot;name&quot;: &quot;SetMyNumber&quot;,&quot;outputs&quot;: [],&quot;payable&quot;: false,&quot;stateMutability&quot;: &quot;nonpayable&quot;,&quot;type&quot;: &quot;function&quot;}]</contract-abi>
             </properties>
         </instance>

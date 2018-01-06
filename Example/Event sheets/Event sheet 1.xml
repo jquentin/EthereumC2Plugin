@@ -3,7 +3,8 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Event sheet 1</name>
     <events>
-        <variable constant="0" name="transactionHash" sid="446150716583795" static="0" type="text"></variable>
+        <variable constant="0" name="transactionHashContractA" sid="446150716583795" static="0" type="text"></variable>
+        <variable constant="0" name="transactionHashContractB" sid="827069586059529" static="0" type="text"></variable>
         <event-block sid="509925707560013">
             <conditions>
                 <condition id="-6" name="Every X seconds" sid="408120403164999" type="System">
@@ -38,111 +39,225 @@
                 </event-block>
             </sub-events>
         </event-block>
-        <event-block sid="883993896273589">
-            <conditions>
-                <condition id="-6" name="Every X seconds" sid="752603787129060" type="System">
-                    <param id="0" name="Interval (seconds)">1.0</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="0" name="Call" sid="698266303060983" type="ExampleContractA">
-                    <param id="0" name="Name with parameters types">&quot;GetMyNumber&quot;</param>
-                    <param id="1" name="Parameter {n}"></param>
-                    <param id="2" name="Callback id">&quot;GetMyNumberCallback&quot;</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="394608527963489">
-            <conditions>
-                <condition id="1" name="On function success" sid="415368646700117" type="ExampleContractA">
-                    <param id="0" name="ID">&quot;GetMyNumberCallback&quot;</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="0" name="Set text" sid="987353176861642" type="YourNumber">
-                    <param id="0" name="Text">&quot;Your number is: &quot; &amp; ExampleContractA.CurrentCallbackResponse &amp; ExampleContractA.CurrentCallbackError</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="822772268946450">
-            <conditions>
-                <condition id="2" name="On function error" sid="749404467993205" type="ExampleContractA">
-                    <param id="0" name="ID">&quot;GetMyNumberCallback&quot;</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="0" name="Set text" sid="470197336335563" type="YourNumber">
-                    <param id="0" name="Text">&quot;Your number is: &quot; &amp; ExampleContractA.CurrentCallbackError</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="837393656109423">
-            <conditions>
-                <condition id="0" name="On clicked" sid="237622298308912" type="SetYourNumberButton" />
-            </conditions>
-            <actions>
-                <action id="1" name="Send" sid="316798332115717" type="ExampleContractA">
-                    <param id="0" name="Name with parameters types">&quot;SetMyNumber&quot;</param>
-                    <param id="1" name="Parameter {n}">int(SetYourNumberTextBox.Text)</param>
-                    <param id="2" name="Callback id">&quot;SetMyNumberCallback&quot;</param>
-                    <param id="3" name="Value">0</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="924736551615739">
-            <conditions>
-                <condition id="1" name="On function success" sid="779222074301653" type="ExampleContractA">
-                    <param id="0" name="ID">&quot;SetMyNumberCallback&quot;</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="-15" name="Set visible" sid="508294509475453" type="WaitingForMining">
-                    <param id="0" name="Visibility">1</param>
-                </action>
-                <action id="-9" name="Set value" sid="139087043711281" type="System">
-                    <param id="0" name="Variable">transactionHash</param>
-                    <param id="1" name="Value">ExampleContractA.CurrentCallbackResponse</param>
-                </action>
-                <action id="3" name="Get Transaction Receipt" sid="625910675294426" type="Ethereum">
-                    <param id="0" name="Hash">transactionHash</param>
-                    <param id="1" name="Callback id">&quot;GetTransactionReceiptCallback&quot;</param>
-                </action>
-            </actions>
-        </event-block>
-        <event-block sid="459032431513902">
-            <conditions>
-                <condition id="1" name="On function success" sid="314008797012102" type="Ethereum">
-                    <param id="0" name="ID">&quot;GetTransactionReceiptCallback&quot;</param>
-                </condition>
-            </conditions>
-            <actions />
+        <event-group description="" sid="217963081701117" title="Contract A">
             <sub-events>
-                <event-block sid="753377141086537">
+                <event-block sid="883993896273589">
                     <conditions>
-                        <condition id="-8" name="Compare two values" sid="239270672095644" type="System">
-                            <param id="0" name="First value">Ethereum.CurrentCallbackResponse</param>
-                            <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Second value">&quot;&quot;</param>
+                        <condition id="-6" name="Every X seconds" sid="752603787129060" type="System">
+                            <param id="0" name="Interval (seconds)">1.0</param>
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="3" name="Get Transaction Receipt" sid="163259916419931" type="Ethereum">
-                            <param id="0" name="Hash">transactionHash</param>
+                        <action id="0" name="Call" sid="698266303060983" type="ContractA">
+                            <param id="0" name="Name with parameters types">&quot;GetMyNumber&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                            <param id="2" name="Callback id">&quot;GetMyNumberCallback&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="394608527963489">
+                    <conditions>
+                        <condition id="1" name="On function success" sid="415368646700117" type="ContractA">
+                            <param id="0" name="ID">&quot;GetMyNumberCallback&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="987353176861642" type="ContractAYourNumber">
+                            <param id="0" name="Text">&quot;Your number is: &quot; &amp; ContractA.CurrentCallbackResponse</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="822772268946450">
+                    <conditions>
+                        <condition id="2" name="On function error" sid="749404467993205" type="ContractA">
+                            <param id="0" name="ID">&quot;GetMyNumberCallback&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="470197336335563" type="ContractAYourNumber">
+                            <param id="0" name="Text">&quot;Your number is: &quot; &amp; ContractA.CurrentCallbackError</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="837393656109423">
+                    <conditions>
+                        <condition id="0" name="On clicked" sid="237622298308912" type="ContractASetNumButton" />
+                    </conditions>
+                    <actions>
+                        <action id="1" name="Send" sid="316798332115717" type="ContractA">
+                            <param id="0" name="Name with parameters types">&quot;SetMyNumber&quot;</param>
+                            <param id="1" name="Parameter {n}">int(ContractASetNumTextBox.Text)</param>
+                            <param id="2" name="Callback id">&quot;SetMyNumberCallback&quot;</param>
+                            <param id="3" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="924736551615739">
+                    <conditions>
+                        <condition id="1" name="On function success" sid="779222074301653" type="ContractA">
+                            <param id="0" name="ID">&quot;SetMyNumberCallback&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="508294509475453" type="ContractAWaitingForMining">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="139087043711281" type="System">
+                            <param id="0" name="Variable">transactionHashContractA</param>
+                            <param id="1" name="Value">ContractA.CurrentCallbackResponse</param>
+                        </action>
+                        <action id="3" name="Get Transaction Receipt" sid="625910675294426" type="Ethereum">
+                            <param id="0" name="Hash">transactionHashContractA</param>
                             <param id="1" name="Callback id">&quot;GetTransactionReceiptCallback&quot;</param>
                         </action>
                     </actions>
                 </event-block>
-                <event-block sid="285407469449302">
+                <event-block sid="459032431513902">
                     <conditions>
-                        <condition id="-22" name="Else" sid="281868586032457" type="System" />
+                        <condition id="1" name="On function success" sid="314008797012102" type="Ethereum">
+                            <param id="0" name="ID">&quot;GetTransactionReceiptCallback&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="753377141086537">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="239270672095644" type="System">
+                                    <param id="0" name="First value">Ethereum.CurrentCallbackResponse</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">&quot;&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="3" name="Get Transaction Receipt" sid="163259916419931" type="Ethereum">
+                                    <param id="0" name="Hash">transactionHashContractA</param>
+                                    <param id="1" name="Callback id">&quot;GetTransactionReceiptCallback&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="285407469449302">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="281868586032457" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-15" name="Set visible" sid="834618035961752" type="ContractAWaitingForMining">
+                                    <param id="0" name="Visibility">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="306884937172970" title="Contract B">
+            <sub-events>
+                <event-block sid="150723219081601">
+                    <conditions>
+                        <condition id="-6" name="Every X seconds" sid="189865747019672" type="System">
+                            <param id="0" name="Interval (seconds)">1.0</param>
+                        </condition>
                     </conditions>
                     <actions>
-                        <action id="-15" name="Set visible" sid="834618035961752" type="WaitingForMining">
-                            <param id="0" name="Visibility">0</param>
+                        <action id="0" name="Call" sid="322364065341797" type="ContractB">
+                            <param id="0" name="Name with parameters types">&quot;GetMyNumber&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                            <param id="2" name="Callback id">&quot;GetMyNumberCallbackContractB&quot;</param>
                         </action>
                     </actions>
                 </event-block>
+                <event-block sid="716536293410557">
+                    <conditions>
+                        <condition id="1" name="On function success" sid="780316532845571" type="ContractB">
+                            <param id="0" name="ID">&quot;GetMyNumberCallbackContractB&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="635134559660819" type="ContractBYourNumber">
+                            <param id="0" name="Text">&quot;Your number is: &quot; &amp; ContractB.CurrentCallbackResponse</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="459268604053184">
+                    <conditions>
+                        <condition id="2" name="On function error" sid="110480219932526" type="ContractB">
+                            <param id="0" name="ID">&quot;GetMyNumberCallbackContractB&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="106640964053692" type="ContractBYourNumber">
+                            <param id="0" name="Text">&quot;Your number is: &quot; &amp; ContractB.CurrentCallbackError</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="655210830001383">
+                    <conditions>
+                        <condition id="0" name="On clicked" sid="666050323910397" type="ContractBSetNumButton" />
+                    </conditions>
+                    <actions>
+                        <action id="1" name="Send" sid="248982472485454" type="ContractB">
+                            <param id="0" name="Name with parameters types">&quot;SetMyNumber&quot;</param>
+                            <param id="1" name="Parameter {n}">int(ContractBSetNumTextBox.Text)</param>
+                            <param id="2" name="Callback id">&quot;SetMyNumberCallbackContractB&quot;</param>
+                            <param id="3" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="882679539637532">
+                    <conditions>
+                        <condition id="1" name="On function success" sid="694608839611261" type="ContractA">
+                            <param id="0" name="ID">&quot;SetMyNumberCallbackContractB&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="894736641015993" type="ContractBWaitingForMining">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="419660620820098" type="System">
+                            <param id="0" name="Variable">transactionHashContractB</param>
+                            <param id="1" name="Value">ContractB.CurrentCallbackResponse</param>
+                        </action>
+                        <action id="3" name="Get Transaction Receipt" sid="705378205854056" type="Ethereum">
+                            <param id="0" name="Hash">transactionHashContractB</param>
+                            <param id="1" name="Callback id">&quot;GetTransactionReceiptCallbackContractB&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="723138282867433">
+                    <conditions>
+                        <condition id="1" name="On function success" sid="652820314365862" type="Ethereum">
+                            <param id="0" name="ID">&quot;GetTransactionReceiptCallbackContractB&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="679401304806187">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="655732973308940" type="System">
+                                    <param id="0" name="First value">Ethereum.CurrentCallbackResponse</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">&quot;&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="3" name="Get Transaction Receipt" sid="945755240136791" type="Ethereum">
+                                    <param id="0" name="Hash">transactionHashContractA</param>
+                                    <param id="1" name="Callback id">&quot;GetTransactionReceiptCallbackContractB&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="694798202123482">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="635243247125174" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-15" name="Set visible" sid="829519703778762" type="ContractBWaitingForMining">
+                                    <param id="0" name="Visibility">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
             </sub-events>
-        </event-block>
+        </event-group>
     </events>
 </c2eventsheet>
