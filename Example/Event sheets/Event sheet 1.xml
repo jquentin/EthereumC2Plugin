@@ -204,7 +204,7 @@
                 </event-block>
                 <event-block sid="882679539637532">
                     <conditions>
-                        <condition id="1" name="On function success" sid="694608839611261" type="ContractA">
+                        <condition id="1" name="On function success" sid="694608839611261" type="ContractB">
                             <param id="0" name="ID">&quot;SetMyNumberCallbackContractB&quot;</param>
                         </condition>
                     </conditions>
@@ -240,7 +240,7 @@
                             </conditions>
                             <actions>
                                 <action id="3" name="Get Transaction Receipt" sid="945755240136791" type="Ethereum">
-                                    <param id="0" name="Hash">transactionHashContractA</param>
+                                    <param id="0" name="Hash">transactionHashContractB</param>
                                     <param id="1" name="Callback id">&quot;GetTransactionReceiptCallbackContractB&quot;</param>
                                 </action>
                             </actions>
