@@ -36,6 +36,11 @@ AddStringParam("Hash", "The transaction hash.");
 AddStringParam("Callback id", "The id for identifying the callback.");
 AddAction(3, 0, "Get Transaction Receipt", "Blocks", "Returns the receipt of transaction {0}", "Returns the receipt of a transaction by transaction hash", "GetTransactionReceipt");
 
+AddStringParam("Transaction Object", "The transaction object to send.");
+AddStringParam("Callback id", "The id for identifying the callback.");
+AddAction(4, 0, "Send Transaction", "Eth", "Send transaction {0}", "Sends a transaction to the network", "SendTransaction");
+
+
 AddStringParam("Callback id", "The id for identifying the callback.");
 AddAction(5, 0, "Get Node Version", "Version", "Returns the client/node version in a callback", "Returns the client/node version in a callback", "GetVersionNode");
 

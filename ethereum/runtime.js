@@ -92,21 +92,13 @@ cr.plugins_.Ethereum = function(runtime)
 	// Actions
 	function Acts() {};
 	
-	Exps.prototype.CurrentCallbackId = function (ret)
-	{
-		ret.set_string(currentCallbackId);
-	};
-	Exps.prototype.CurrentCallbackError = function (ret)
-	{
-		ret.set_string(currentCallbackError ? currentCallbackError.toString() : "");
-	};
-	Exps.prototype.CurrentCallbackResponse = function (ret)
-	{
-		ret.set_string(currentCallbackResponse ? currentCallbackResponse.toString() : "");
-	};
 	Acts.prototype.GetTransactionReceipt = function (hash, id)
 	{
 		web3.eth.getTransactionReceipt(hash, function (err, res) { OnSendCallback (err, res, id); });
+	}
+	Acts.prototype.SendTransaction = function (obj, id)
+	{
+		web3.eth.sendTransaction(obj, function (err, res) { OnSendCallback (err, res, id); });
 	}
 	Acts.prototype.GetVersionNode = function (id)
 	{
@@ -185,7 +177,6 @@ cr.plugins_.Ethereum = function(runtime)
 	function OnSendCallback (error, result, id)
 	{
 		currentCallbackId = id;
-		console.log(inst);
 		if (error)
 		{
 			currentCallbackResponse = "";
@@ -208,6 +199,18 @@ cr.plugins_.Ethereum = function(runtime)
 	// Expressions
 	function Exps() {};
 	
+	Exps.prototype.CurrentCallbackId = function (ret)
+	{
+		ret.set_string(currentCallbackId);
+	};
+	Exps.prototype.CurrentCallbackError = function (ret)
+	{
+		ret.set_string(currentCallbackError ? currentCallbackError.toString() : "");
+	};
+	Exps.prototype.CurrentCallbackResponse = function (ret)
+	{
+		ret.set_string(currentCallbackResponse ? currentCallbackResponse.toString() : "");
+	};
 	
 	Exps.prototype.CurrentAccount = function (ret)
 	{
@@ -287,7 +290,7 @@ cr.plugins_.Ethereum = function(runtime)
 	};
 	Exps.prototype.Coinbase = function (ret)
 	{
-		ret.set_string(web3.eth.coinbase);
+		ret.set_string(web3.eth.coinbase || '');
 	};
 	Exps.prototype.IsMining = function (ret)
 	{
