@@ -63,8 +63,11 @@ ACESDone();
 
 // Property grid properties for this plugin
 var property_list = [
-	new cr.Property(ept_text,		"Contract address",		"",			"The contract's address."),
-	new cr.Property(ept_text,		"Contract ABI",			"",			"The contract's ABI array")
+	new cr.Property(ept_text,		"Contract ABI",			"",			"The contract's ABI array"),
+	new cr.Property(ept_text,		"Mainnet address",		"",			"The contract's address on the Mainnet."),
+	new cr.Property(ept_text,		"Ropsten address",		"",			"The contract's address on Ropsten."),
+	new cr.Property(ept_text,		"Kovan address",		"",			"The contract's address on Kovan."),
+	new cr.Property(ept_text,		"Rinkeby address",		"",			"The contract's address on Rinkeby."),
 	];
 	
 // Called by IDE when a new object type is to be created

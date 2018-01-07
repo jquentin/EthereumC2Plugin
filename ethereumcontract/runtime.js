@@ -54,10 +54,31 @@ cr.plugins_.EthereumContract = function(runtime)
 		
 		runtime = this.runtime;
 		
-		var contractAddress = this.properties[0];
-		var contractABI = JSON.parse(this.properties[1]);
+		var contractABI = JSON.parse(this.properties[0]);
 		
 		var MyContract = web3.eth.contract(contractABI);
+		
+		var contractAddress;
+		
+		switch (web3.version.network)
+		{
+			//Mainnet
+			case "1": contractAddress = this.properties[1]; break;
+			//Ropsten
+			case "3": contractAddress = this.properties[2]; break;
+			//Kovan
+			case "42": contractAddress = this.properties[3]; break;
+			//Rinkeby
+			case "4": contractAddress = this.properties[4]; break;
+			//Unknown
+			default: cr.logexport("This ethereum network is not supported by this ethereum plugin."); return;
+		}
+		if (!contractAddress)
+		{
+			cr.logexport("This ethereum network is not supported by this dapp."); 
+			return;
+		}
+		
 		this.contractInstance = MyContract.at(contractAddress);
 		
 		this.currentCallbackId = "";
