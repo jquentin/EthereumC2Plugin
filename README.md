@@ -4,7 +4,7 @@ Here are two plugins to integrate the Ethereum Blockchain in your Construct 2 ga
 
 <STRONG>Some details</STRONG>
 
-They both use the Web3 Javascript API version 0.2, so it works with all compatible browsers, like Metamask or Mist.
+They both use the <A HREF="https://github.com/ethereum/wiki/wiki/JavaScript-API">Web3 Javascript API</A> version 0.2, so it works with all compatible browsers, like Metamask or Mist.
 Like in Web3, there are 2 ways to call most functions: synchronous or asynchronous (although some nodes like Metamask don't support synchronous calls).
 
 To call a function synchronously:
@@ -35,7 +35,7 @@ The main actions are:
 <STRONG>Examples</STRONG>
 
 There is a simple example project in the github project.
-You can also look at this real life project that uses the plugin.
+You can also look at this <A HREF="https://github.com/jquentin/TenMinus">real life project</A> that uses the plugin.
 
 <STRONG>Possible Improvements</STRONG>
 
